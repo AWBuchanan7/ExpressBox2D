@@ -1,0 +1,15 @@
+doctype html
+html
+    head
+        title=title
+        script(type="text/javascript", src="/box2D/Box2D_v2.2.1_min.js")
+        script(type="text/javascript", src="/box2D/embox2d-helpers.js")
+        script(type="text/javascript", src="/box2D/embox2d-html5canvas-debugDraw.js")
+        script(type="text/javascript", src="/canvas.js")
+        script(type='text/javascript', src="/setup.js") 
+        script(type="text/javascript", src="/worlds/#{canvas}.js")
+        link(rel='stylesheet', href='/style.css')
+    body
+        input(id="canvasSelection", type="hidden" value="#{canvas}")
+        div(style="text-align:center")
+            block content

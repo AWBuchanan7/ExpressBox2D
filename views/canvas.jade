@@ -1,0 +1,61 @@
+extends canvasLayout
+block content
+            h1=title
+            div(class="mainPanel")
+                <!--If you change the size of the canvas, you'll also need to change the value of 'viewCenterPixel' in canvas.js-->
+                button(id="prevButton", onclick="getPrevCanvas();")
+                        p Prev Canvas
+                    button(id="nextButton", onclick="getNextCanvas();")
+                        p Next Canvas
+                canvas(class="canvasPanel", id="canvas", width="640", height="480", tabindex='1')
+                div(class="controlPanel")
+
+                    h3 Controls:
+                    button(id="reloadButton", onclick="resetScene();")
+                        p Reset (R)
+                    button(id="pauseButton", onclick="pause();")
+                        p Pause (P)
+                    button(id="stepButton", onclick="step();")
+                        p Step (S)
+                    button(id="zoomInButton", onclick="zoomIn();")
+                        p + (X)
+                    button(id="zoomOutButton", onclick="zoomOut();")
+                        p - (Z)
+                    
+                    if canvas == "carDrive"
+                        p CarDrive: use J/K to move
+                    if canvas == "barrels"
+                        p Barrels: use W/A/S/D to move
+                    p Hold Shift while moving the mouse (or Arrow Keys) to pan.
+
+                    h3 Debug Draw Flags:
+                    table
+                        tr
+                            td
+                                input(id="drawShapesCheck", type="checkbox", onclick="updateWorldFromDebugDrawCheckboxes();")
+                                label(for='drawShapesCheck') Shapes
+                            td
+                                input(id="showStatsCheck", type="checkbox", onclick="updateContinuousRefreshStatus();")
+                                label(for='showStatsCheck') Show Stats
+                            td
+                                span(id="feedbackSpan")
+                        tr
+                            td
+                                input(id="drawJointsCheck", type="checkbox", onclick="updateWorldFromDebugDrawCheckboxes();")
+                                label(for='drawJointsCheck') Joints
+                        tr
+                            td
+                                input(id="drawAABBsCheck", type="checkbox", onclick="updateWorldFromDebugDrawCheckboxes();")
+                                label(for='drawAABBsCheck') AABBs
+                        tr
+                            td
+                                input(id="drawTransformsCheck", type="checkbox", onclick="updateWorldFromDebugDrawCheckboxes();")
+                                label(for='drawTransformsCheck') Transforms
+                    br
+            p This demo uses JavaScript generated from the Box2D C++ source code using emscripten. For more details check out:
+            ul
+                li https://github.com/kripken/emscripten
+                li https://github.com/kripken/box2d.js
+                li https://github.com/expressjs/express
+            br
+            br
